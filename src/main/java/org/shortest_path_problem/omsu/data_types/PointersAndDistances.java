@@ -1,10 +1,12 @@
 package org.shortest_path_problem.omsu.data_types;
 
+import java.util.Arrays;
+
 public class PointersAndDistances {
     private int[] pointers;
-    private int[] distances;
+    private double[] distances;
 
-    public PointersAndDistances(int[] pointers, int[] distances) {
+    public PointersAndDistances(int[] pointers, double[] distances) {
         this.pointers = pointers;
         this.distances = distances;
     }
@@ -17,11 +19,26 @@ public class PointersAndDistances {
         this.pointers = pointers;
     }
 
-    public int[] getDistances() {
+    public double[] getDistances() {
         return distances;
     }
 
-    public void setDistances(int[] distances) {
+    public void setDistances(double[] distances) {
         this.distances = distances;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PointersAndDistances that = (PointersAndDistances) o;
+        return Arrays.equals(pointers, that.pointers) && Arrays.equals(distances, that.distances);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(pointers);
+        result = 31 * result + Arrays.hashCode(distances);
+        return result;
     }
 }
