@@ -2,12 +2,13 @@ package org.shortest_path_problem.omsu.data_types;
 
 import java.util.List;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class PathAndDistance {
     private List<Integer> path;
-    private int distance;
+    private double distance;
 
-    public PathAndDistance(List<Integer> path, int distance) {
+    public PathAndDistance(List<Integer> path, double distance) {
         this.path = path;
         this.distance = distance;
     }
@@ -20,12 +21,25 @@ public class PathAndDistance {
         this.path = path;
     }
 
-    public int getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PathAndDistance that = (PathAndDistance) o;
+        return Double.compare(distance, that.distance) == 0 && Objects.equals(path, that.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path, distance);
     }
 
     @Override
