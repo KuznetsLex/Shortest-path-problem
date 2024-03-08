@@ -14,6 +14,6 @@ class GraphInputTest extends AlgorithmsTest {
 
     @Test
     void fileInput() {
-        // TODO
+        GraphInput.fileInput();
     }
 }

@@ -43,11 +43,11 @@ public class GraphInput {
             for(String l: lines){
                 String[] el= l.split(" ");
                 for (int j = 0; j < size; j++) {
-                    if(i==j && graph[i][j]!=0){// check, if the edges with one start and the same end have zero weight
-                        throw new NotZeroWeightsException();
-                    }
-                    else if(!el[j].equals("inf")){ // check, if the data correct
+                    if(!el[j].equals("inf")){ // check, if the data correct
                         graph[i][j] = Double.parseDouble(el[j]);
+                        if(i==j && graph[i][j]!=0){// check, if the edges with one start and the same end have zero weight
+                            throw new NotZeroWeightsException();
+                        }
                     }
                     else{
                         graph[i][j] = Double.POSITIVE_INFINITY;
