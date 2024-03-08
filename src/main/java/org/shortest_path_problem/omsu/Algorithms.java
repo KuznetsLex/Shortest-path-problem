@@ -13,7 +13,7 @@ public class Algorithms {
         try {
             int size = graphWeightMatrix[0].length;
 
-            for (int i = 0; i < size; i++) {// check are there any negative elements
+            for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if(graphWeightMatrix[i][j]<0){
                         throw new IllegalArgumentException();
@@ -21,11 +21,11 @@ public class Algorithms {
                 }
             }
 
-            double[] d = new double[size]; //array with result weights of edges of tree
-            int[] p = new int[size]; //array with pointers
-            HashSet<Integer> usedPoints = new HashSet<>(size);//set of used points
+            double[] d = new double[size];
+            int[] p = new int[size];
+            HashSet<Integer> usedPoints = new HashSet<>(size);
 
-            for (int i = 0; i < size; i++) {// zero iteration
+            for (int i = 0; i < size; i++) {
                 d[i] = graphWeightMatrix[s][i];
                 p[i] = s;
             }
@@ -37,7 +37,7 @@ public class Algorithms {
                 double min = 0;
                 for (int j = 0; j < size; j++) {
                     if(!usedPoints.contains(j)){
-                        min = d[j];//find minimal and assign it to u
+                        min = d[j];
                         u=j;
                     }
                 }
@@ -51,14 +51,10 @@ public class Algorithms {
                     }
                 }
 
-                if(d[u] == Double.POSITIVE_INFINITY){ //check is this graph disconnected
-                    throw new ArithmeticException();
-                }
+                usedPoints.add(u);
 
-                usedPoints.add(u);//add u to used points
-
-                for (int v = 0; v < size; v++) { //find the minimal length ways
-                    if(usedPoints.contains(v)){ //miss used points
+                for (int v = 0; v < size; v++) {
+                    if(usedPoints.contains(v)){
                         continue;
                     }
                     else if(d[u]+graphWeightMatrix[u][v]<d[v]){
@@ -72,10 +68,6 @@ public class Algorithms {
         }
         catch (IllegalArgumentException e){
             System.out.println("You entered matrix with negative elements");
-            return null;
-        }
-        catch (ArithmeticException e){
-            System.out.println("You entered disconnected graph");
             return null;
         }
     }

@@ -22,15 +22,15 @@ public class GraphInput {
             int size = 0;
             String line;
 
-            if(scanner.hasNextLine()){ //enter the Stream to the List
+            if(scanner.hasNextLine()){
                 line = scanner.nextLine();
                 lines.add(line);
-                size = line.split(" ").length; //enter the suitable size for NxN matrix
+                size = line.split(" ").length;
             }
-            while(scanner.hasNextLine()){ //enter the Stream to the List
+            while(scanner.hasNextLine()){
                 line = scanner.nextLine();
                 lines.add(line);
-                if(line.split(" ").length != size){ //check is the size NxN
+                if(line.split(" ").length != size){
                     throw new ArrayIndexOutOfBoundsException();
                 }
             }
@@ -39,13 +39,13 @@ public class GraphInput {
             }
 
             int i = 0;
-            double[][] graph = new double[size][size]; //add all the staff to graph array
+            double[][] graph = new double[size][size];
             for(String l: lines){
                 String[] el= l.split(" ");
                 for (int j = 0; j < size; j++) {
-                    if(!el[j].equals("inf")){ // check, if the data correct
+                    if(!el[j].equals("inf")){
                         graph[i][j] = Double.parseDouble(el[j]);
-                        if(i==j && graph[i][j]!=0){// check, if the edges with one start and the same end have zero weight
+                        if(i==j && graph[i][j]!=0){
                             throw new NotZeroWeightsException();
                         }
                     }
