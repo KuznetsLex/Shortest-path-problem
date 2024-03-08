@@ -13,6 +13,9 @@ public class GraphInput {
 
     public static double[][] fileInput() {
         Scanner scanner = null;
+
+        class NotZeroWeightsException extends Exception{}
+
         try{
             scanner = new Scanner(new File("Input.txt"));
             ArrayList<String> lines = new ArrayList<>();
@@ -40,7 +43,10 @@ public class GraphInput {
             for(String l: lines){
                 String[] el= l.split(" ");
                 for (int j = 0; j < size; j++) {
-                    if(!el[j].equals("inf")){ // check, if the data correct
+                    if(i==j && graph[i][j]!=0){// check, if the edges with one start and the same end have zero weight
+                        throw new NotZeroWeightsException();
+                    }
+                    else if(!el[j].equals("inf")){ // check, if the data correct
                         graph[i][j] = Double.parseDouble(el[j]);
                     }
                     else{
@@ -55,17 +61,22 @@ public class GraphInput {
         }
         catch (FileNotFoundException e){
             System.out.println("File doesn't exist");
-            return new double[0][0];
+            return null;
         }
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("You should enter the square matrix");
             scanner.close();
-            return new double[0][0];
+            return null;
         }
         catch (NumberFormatException e) {
             System.out.println("You entered the wrong type of data. You possible to enter the numbers or inf (for infinite)");
             scanner.close();
-            return new double[0][0];
+            return null;
+        }
+        catch (NotZeroWeightsException e){
+            System.out.println("There should be only zero weights for edges that have the start and the end in one point");
+            scanner.close();
+            return null;
         }
     }
 }
