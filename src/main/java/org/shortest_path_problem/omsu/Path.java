@@ -11,16 +11,15 @@ import static org.shortest_path_problem.omsu.Algorithms.dijkstra;
 public class Path {
     public static PathAndDistance pathForDijkstra(int s, int t, double[][] graphWeightMatrix) {
         List<Integer> pathList = new ArrayList<>();
-        int[] p = Algorithms.dijkstra(s, graphWeightMatrix).getPointers();
-        double[] d = Algorithms.dijkstra(s, graphWeightMatrix).getDistances();
+        PointersAndDistances pointersAndDistances = new PointersAndDistances(dijkstra(s, graphWeightMatrix));
         int v = t;
         pathList.add(v);
         while(v!=s) {
-            int u = p[v];
+            int u = pointersAndDistances.getPointers()[v];
             pathList.addFirst(u);
             v = u;
         }
-        double distance = d[t];
+        double distance = pointersAndDistances.getDistances()[t];
         return new PathAndDistance(pathList, distance);
     }
 }
