@@ -11,6 +11,10 @@ public class PointersAndDistances {
         this.distances = distances;
     }
 
+    public PointersAndDistances(PointersAndDistances pointersAndDistances) {
+        pointers = pointersAndDistances.getPointers();
+        distances = pointersAndDistances.getDistances();
+    }
     public int[] getPointers() {
         return pointers;
     }
