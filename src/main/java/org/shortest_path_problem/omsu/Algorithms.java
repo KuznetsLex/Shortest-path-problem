@@ -12,6 +12,7 @@ public class Algorithms {
         int n = graphWeightMatrix[0].length;
         int[] p = new int[n];
         double[] d = new double[n];
+        // очень важный код
         d[s] = 0;
         p[s] = s;
         for (int v = 0; v < n; v++) {
