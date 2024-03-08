@@ -21,7 +21,15 @@ class AlgorithmsTest {
 
     @Test
     void bellmanFord() {
-        // TODO
+        double[][] graphWeightMatrix = {
+                {Double.POSITIVE_INFINITY, 4, 2},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, 1, Double.POSITIVE_INFINITY}
+        };
+        int[] p = {0, 2, 0};
+        double[] d = {0, 3, 2};
+
+        assertEquals(new PointersAndDistances(p, d), Algorithms.bellmanFord(0, graphWeightMatrix));
     }
 
     @Test
