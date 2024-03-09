@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Path {
 
-    public static PathAndDistance PathForFloydWarshall(int s, int t, double[][] graphWeightMatrix) {
+    public static PathAndDistance pathForFloydWarshall(int s, int t, double[][] graphWeightMatrix) {
         PointersAndDistancesMatrices matrices = Algorithms.floydWarshall(graphWeightMatrix);
         List<Integer> path = new ArrayList<>(graphWeightMatrix[0].length);
         double distance = matrices.getDistances()[s][t];
