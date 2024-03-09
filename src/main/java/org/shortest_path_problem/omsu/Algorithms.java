@@ -3,11 +3,7 @@ package org.shortest_path_problem.omsu;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class Algorithms {
     public static PointersAndDistances dijkstra(int s, double[][] graphWeightMatrix) {
@@ -122,6 +118,6 @@ public class Algorithms {
                             else matrixIndex[i][j] = matrixIndex[k][j];
                         }
                     }}}
-            return new PointersAndDistancesMstrices(matrixIndex, matrixWeight);
+            return new PointersAndDistancesMatrices(matrixIndex, matrixWeight);
     }
 }
