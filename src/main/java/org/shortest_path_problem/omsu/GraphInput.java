@@ -45,21 +45,24 @@ public class GraphInput {
 
     public static double[][] fileInput() {
         Scanner scanner = null;
+
+        class NotZeroWeightsException extends Exception{}
+
         try{
             scanner = new Scanner(new File("Input.txt"));
             ArrayList<String> lines = new ArrayList<>();
             int size = 0;
             String line;
 
-            if(scanner.hasNextLine()){ //enter the Stream to the List
+            if(scanner.hasNextLine()){
                 line = scanner.nextLine();
                 lines.add(line);
-                size = line.split(" ").length; //enter the suitable size for NxN matrix
+                size = line.split(" ").length;
             }
-            while(scanner.hasNextLine()){ //enter the Stream to the List
+            while(scanner.hasNextLine()){
                 line = scanner.nextLine();
                 lines.add(line);
-                if(line.split(" ").length != size){ //check is the size NxN
+                if(line.split(" ").length != size){
                     throw new ArrayIndexOutOfBoundsException();
                 }
             }
@@ -68,12 +71,15 @@ public class GraphInput {
             }
 
             int i = 0;
-            double[][] graph = new double[size][size]; //add all the staff to graph array
+            double[][] graph = new double[size][size];
             for(String l: lines){
                 String[] el= l.split(" ");
                 for (int j = 0; j < size; j++) {
-                    if(!el[j].equals("inf")){ // check, if the data correct
+                    if(!el[j].equals("inf")){
                         graph[i][j] = Double.parseDouble(el[j]);
+                        if(i==j && graph[i][j]!=0){
+                            throw new NotZeroWeightsException();
+                        }
                     }
                     else{
                         graph[i][j] = Double.POSITIVE_INFINITY;
@@ -87,17 +93,22 @@ public class GraphInput {
         }
         catch (FileNotFoundException e){
             System.out.println("File doesn't exist");
-            return new double[0][0];
+            return null;
         }
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("You should enter the square matrix");
             scanner.close();
-            return new double[0][0];
+            return null;
         }
         catch (NumberFormatException e) {
             System.out.println("You entered the wrong type of data. You possible to enter the numbers or inf (for infinite)");
             scanner.close();
-            return new double[0][0];
+            return null;
+        }
+        catch (NotZeroWeightsException e){
+            System.out.println("There should be only zero weights for edges that have the start and the end in one point");
+            scanner.close();
+            return null;
         }
     }
 }

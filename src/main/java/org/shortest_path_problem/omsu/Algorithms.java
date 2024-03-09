@@ -1,19 +1,16 @@
 package org.shortest_path_problem.omsu;
 
 import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
+import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class Algorithms {
     public static PointersAndDistances dijkstra(int s, double[][] graphWeightMatrix) {
         try {
             int size = graphWeightMatrix[0].length;
 
-            for (int i = 0; i < size; i++) {// check are there any negative elements
+            for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if(graphWeightMatrix[i][j]<0){
                         throw new IllegalArgumentException();
@@ -21,11 +18,11 @@ public class Algorithms {
                 }
             }
 
-            double[] d = new double[size]; //array with result weights of edges of tree
-            int[] p = new int[size]; //array with pointers
-            HashSet<Integer> usedPoints = new HashSet<>(size);//set of used points
+            double[] d = new double[size];
+            int[] p = new int[size];
+            HashSet<Integer> usedPoints = new HashSet<>(size);
 
-            for (int i = 0; i < size; i++) {// zero iteration
+            for (int i = 0; i < size; i++) {
                 d[i] = graphWeightMatrix[s][i];
                 p[i] = s;
             }
@@ -37,7 +34,7 @@ public class Algorithms {
                 double min = 0;
                 for (int j = 0; j < size; j++) {
                     if(!usedPoints.contains(j)){
-                        min = d[j];//find minimal and assign it to u
+                        min = d[j];
                         u=j;
                     }
                 }
@@ -51,14 +48,10 @@ public class Algorithms {
                     }
                 }
 
-                if(d[u] == Double.POSITIVE_INFINITY){ //check is this graph disconnected
-                    throw new ArithmeticException();
-                }
+                usedPoints.add(u);
 
-                usedPoints.add(u);//add u to used points
-
-                for (int v = 0; v < size; v++) { //find the minimal length ways
-                    if(usedPoints.contains(v)){ //miss used points
+                for (int v = 0; v < size; v++) {
+                    if(usedPoints.contains(v)){
                         continue;
                     }
                     else if(d[u]+graphWeightMatrix[u][v]<d[v]){
@@ -72,10 +65,6 @@ public class Algorithms {
         }
         catch (IllegalArgumentException e){
             System.out.println("You entered matrix with negative elements");
-            return null;
-        }
-        catch (ArithmeticException e){
-            System.out.println("You entered disconnected graph");
             return null;
         }
     }
@@ -106,8 +95,29 @@ public class Algorithms {
         return new PointersAndDistances(p, d);
     }
 
-    public static PointersAndDistances floydWarshall(double[][] graphWeightMatrix) {
-        // TODO
-        return null;
+    public static PointersAndDistancesMatrices floydWarshall(double[][] graphWeightMatrix) {
+            double[][] matrixWeight= new double [graphWeightMatrix.length][graphWeightMatrix[0].length];
+            int[][] matrixIndex= new int [matrixWeight.length][matrixWeight[0].length];
+            for (int i = 0; i < matrixWeight.length; i++){
+                for (int j = 0; j < matrixWeight[0].length; j++){
+                    matrixWeight[i][j] = graphWeightMatrix[i][j];
+                    matrixIndex[i][j] = i;
+                }
+            }
+
+            for (int i = 0; i < matrixWeight.length; i++){
+                matrixWeight[i][i] = 0;
+            }
+
+            for (int k = 0; k < matrixWeight.length; k++){
+                for (int i = 0; i < matrixWeight.length; i++){
+                    for (int j = 0; j < matrixWeight.length; j++) {
+                        if (matrixWeight[i][j] > matrixWeight[i][k] + matrixWeight[k][j]){
+                            matrixWeight[i][j] = matrixWeight[i][k] + matrixWeight[k][j];
+                            if(matrixIndex[k][j] == i) matrixIndex[i][j] = k;
+                            else matrixIndex[i][j] = matrixIndex[k][j];
+                        }
+                    }}}
+            return new PointersAndDistancesMatrices(matrixIndex, matrixWeight);
     }
 }
