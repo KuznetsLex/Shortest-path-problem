@@ -59,7 +59,7 @@ class PathTest {
         };
 
         List<Integer> path = new ArrayList<>(List.of(0));
-        assertEquals(new PathAndDistance(path, Double.POSITIVE_INFINITY), Path.pathForDijkstra(0, 0, graph));
+        assertEquals(new PathAndDistance(path, 0), Path.pathForDijkstra(0, 0, graph));
     }
 
     @Test
@@ -110,7 +110,7 @@ class PathTest {
         };
 
         List<Integer> path = new ArrayList<>(List.of(0));
-        assertEquals(new PathAndDistance(path, Double.POSITIVE_INFINITY), Path.pathForBellmanFord(0, 0, graph));
+        assertEquals(new PathAndDistance(path, 0), Path.pathForBellmanFord(0, 0, graph));
     }
 
     @Test
@@ -187,7 +187,7 @@ class PathTest {
         };
 
         List<Integer> path = new ArrayList<>(List.of(0));
-        assertEquals(new PathAndDistance(path, Double.POSITIVE_INFINITY), Path.pathForFloydWarshall(0, 0, graph));
+        assertEquals(new PathAndDistance(path, 0), Path.pathForFloydWarshall(0, 0, graph));
     }
 
     @Test
