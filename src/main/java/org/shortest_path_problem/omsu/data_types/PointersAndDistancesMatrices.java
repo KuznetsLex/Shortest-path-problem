@@ -32,13 +32,13 @@ public class PointersAndDistancesMatrices {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PointersAndDistancesMatrices that = (PointersAndDistancesMatrices) o;
-        return Arrays.equals(pointers, that.pointers) && Arrays.equals(distances, that.distances);
+        return Arrays.deepEquals(pointers, that.pointers) && Arrays.deepEquals(distances, that.distances);
     }
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(pointers);
-        result = 31 * result + Arrays.hashCode(distances);
+        int result = Arrays.deepHashCode(pointers);
+        result = 31 * result + Arrays.deepHashCode(distances);
         return result;
     }
 }
