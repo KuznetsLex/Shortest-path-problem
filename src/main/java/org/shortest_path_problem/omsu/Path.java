@@ -6,6 +6,7 @@ import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.shortest_path_problem.omsu.Algorithms.bellmanFord;
 import static org.shortest_path_problem.omsu.Algorithms.dijkstra;
 
 public class Path {
@@ -20,6 +21,20 @@ public class Path {
             v = u;
         }
         double distance = pointersAndDistances.getDistances()[t];
+        return new PathAndDistance(pathList, distance);
+    }
+
+    public static PathAndDistance pathForBellmanFord(int s, int t, double[][] graphWeightMatrix) {
+        List<Integer> pathList = new ArrayList<>();
+        PointersAndDistances pointersAndDistances = new PointersAndDistances(bellmanFord(s, graphWeightMatrix));
+        int v = t;
+        pathList.add(v);
+        while(v!=s) {
+            int u = pointersAndDistances.getPointers()[v];
+            pathList.addFirst(u);
+            v = u;
+        }
+        int distance = pointersAndDistances.getDistances()[t];
         return new PathAndDistance(pathList, distance);
     }
 }
