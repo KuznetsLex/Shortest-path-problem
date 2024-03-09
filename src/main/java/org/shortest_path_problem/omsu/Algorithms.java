@@ -1,7 +1,7 @@
 package org.shortest_path_problem.omsu;
 
 import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
-import org.shortest_path_problem.omsu.data_types.PointersAndDistancesArrays;
+import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
 
 public class Algorithms {
     public static PointersAndDistances dijkstra(int s, double[][] graphWeightMatrix) {
@@ -14,7 +14,7 @@ public class Algorithms {
         return null;
     }
 
-    public static PointersAndDistancesArrays floydWarshall(double[][] graphWeightMatrix) {
+    public static PointersAndDistancesMatrices floydWarshall(double[][] graphWeightMatrix) {
             double[][] matrixWeight= new double [graphWeightMatrix.length][graphWeightMatrix[0].length];
             int[][] matrixIndex= new int [matrixWeight.length][matrixWeight[0].length];
             for (int i = 0; i < matrixWeight.length; i++){
@@ -37,6 +37,6 @@ public class Algorithms {
                             else matrixIndex[i][j] = matrixIndex[k][j];
                         }
                     }}}
-            return new PointersAndDistancesArrays(matrixIndex, matrixWeight);
+            return new PointersAndDistancesMatrices(matrixIndex, matrixWeight);
     }
 }
