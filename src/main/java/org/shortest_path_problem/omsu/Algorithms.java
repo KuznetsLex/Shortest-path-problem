@@ -20,7 +20,7 @@ public class Algorithms {
             for (int i = 0; i < matrixWeight.length; i++){
                 for (int j = 0; j < matrixWeight[0].length; j++){
                     matrixWeight[i][j] = graphWeightMatrix[i][j];
-                    matrixIndex[i][j] = -1;
+                    matrixIndex[i][j] = i;
                 }
             }
 
@@ -33,10 +33,10 @@ public class Algorithms {
                     for (int j = 0; j < matrixWeight.length; j++) {
                         if (matrixWeight[i][j] > matrixWeight[i][k] + matrixWeight[k][j]){
                             matrixWeight[i][j] = matrixWeight[i][k] + matrixWeight[k][j];
-                            if(matrixIndex[k][j] == -1) matrixIndex[i][j] = k;
+                            if(matrixIndex[k][j] == i) matrixIndex[i][j] = k;
                             else matrixIndex[i][j] = matrixIndex[k][j];
                         }
                     }}}
-            return new PointersAndDistancesMatrices(matrixIndex, matrixWeight);
+            return new PointersAndDistancesMstrices(matrixIndex, matrixWeight);
     }
 }
