@@ -3,12 +3,31 @@ package org.shortest_path_problem.omsu;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GraphInput {
     public static double[][] randomInput(int size) {
-        // TODO
-        return null;
+        double[][] graph = new double[size][size];
+        Random rand = new Random();
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                double probability = 0.15;
+                double realEvent = rand.nextDouble();
+                if(i==j){
+                    graph[i][j] = 0;
+                }
+                else if(realEvent <= probability){
+                    graph[i][j] = Double.POSITIVE_INFINITY;
+                }
+                else{
+                    graph[i][j] = (double) Math.round((-100 + rand.nextDouble() * 200) * 10) / 10;
+                }
+            }
+        }
+
+        return graph;
     }
 
     public static double[][] fileInput() {
