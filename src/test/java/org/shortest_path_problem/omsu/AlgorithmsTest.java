@@ -3,8 +3,9 @@ package org.shortest_path_problem.omsu;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
+import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AlgorithmsTest {
 
@@ -198,15 +199,25 @@ class AlgorithmsTest {
     @Test
     void floydWarshallFirst() {
         double[][] graph = {
-                {Double.POSITIVE_INFINITY, 0, 1, 2},
-                {0, Double.POSITIVE_INFINITY, 2, 0},
-                {1, 2, Double.POSITIVE_INFINITY, 1},
-                {2, 0, 1, Double.POSITIVE_INFINITY}
+                {Double.POSITIVE_INFINITY, -2, 7, -1},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 8, 6},
+                {Double.POSITIVE_INFINITY, 3, Double.POSITIVE_INFINITY, -4},
+                {5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY}
         };
 
-        int[] pointers = {1, 3, 3, 3};
-        double[] distances = {0, 0, 1, 0};
+        int[][] pointers = {
+                {0, 0, 1, 0},
+                {3, 1, 1, 2},
+                {3, 0, 2, 2},
+                {3, 0, 1, 3}
+        };
+        double[][] distances = {
+                {0, -2, 6, -1},
+                {9, 0, 8, 4},
+                {1, -1, 0, -4},
+                {5, 3, 11, 0}
+        };
 
-        assertEquals(new PointersAndDistances(pointers, distances), Algorithms.floydWarshall(graph));
+       assertEquals(new PointersAndDistancesMatrices(pointers, distances), Algorithms.floydWarshall(graph));
     }
 }
