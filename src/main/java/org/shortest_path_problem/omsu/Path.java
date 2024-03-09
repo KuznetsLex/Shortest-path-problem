@@ -23,7 +23,6 @@ public class Path {
         int distance = pointersAndDistances.getDistances()[t];
         return new PathAndDistance(pathList, distance);
     }
-
     public static PathAndDistance pathForBellmanFord(int s, int t, double[][] graphWeightMatrix) {
         List<Integer> pathList = new ArrayList<>();
         PointersAndDistances pointersAndDistances = new PointersAndDistances(bellmanFord(s, graphWeightMatrix));
