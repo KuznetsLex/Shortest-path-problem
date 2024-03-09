@@ -2,32 +2,43 @@ package org.shortest_path_problem.omsu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class GraphInput {
     public static double[][] randomInput(int size) {
-        double[][] graph = new double[size][size];
-        Random rand = new Random();
-        double probability = 0.15;
+        try(FileWriter writer = new FileWriter("Input.txt")){
+            double[][] graph = new double[size][size];
+            Random rand = new Random();
+            double probability = 0.15;
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                double realEvent = rand.nextDouble();
-                if(i==j){
-                    graph[i][j] = 0;
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    double realEvent = rand.nextDouble();
+                    if(i==j){
+                        graph[i][j] = 0;
+                    }
+                    else if(realEvent <= probability){
+                        graph[i][j] = Double.POSITIVE_INFINITY;
+                    }
+                    else{
+                        graph[i][j] = (double) Math.round((-100 + rand.nextDouble() * 200) * 10) / 10;
+                    }
+                    writer.write(graph[i][j] + " ");
                 }
-                else if(realEvent <= probability){
-                    graph[i][j] = Double.POSITIVE_INFINITY;
-                }
-                else{
-                    graph[i][j] = (double) Math.round((-100 + rand.nextDouble() * 200) * 10) / 10;
-                }
+                writer.write('\n');
             }
-        }
 
-        return graph;
+            return graph;
+        }
+        catch (IOException e) {
+            System.out.println("File doesn't exist");
+            return new double[0][0];
+        }
     }
 
     public static double[][] fileInput() {
