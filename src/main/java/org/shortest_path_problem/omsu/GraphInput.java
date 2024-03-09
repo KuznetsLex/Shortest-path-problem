@@ -21,14 +21,16 @@ public class GraphInput {
                     double realEvent = rand.nextDouble();
                     if(i==j){
                         graph[i][j] = 0;
+                        writer.write(graph[i][j] + " ");
                     }
                     else if(realEvent <= probability){
                         graph[i][j] = Double.POSITIVE_INFINITY;
+                        writer.write("inf ");
                     }
                     else{
                         graph[i][j] = (double) Math.round((-100 + rand.nextDouble() * 200) * 10) / 10;
+                        writer.write(graph[i][j] + " ");
                     }
-                    writer.write(graph[i][j] + " ");
                 }
                 writer.write('\n');
             }
