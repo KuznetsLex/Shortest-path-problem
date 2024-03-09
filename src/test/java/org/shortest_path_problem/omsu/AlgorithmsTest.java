@@ -40,6 +40,7 @@ class AlgorithmsTest {
         assertEquals(new PointersAndDistances(pointers, distances), Algorithms.dijkstra(3, graph));
     }
 
+    @Test
     void dijkstra() {
         double[][] graph = {{0,4,2},{Double.POSITIVE_INFINITY,0,Double.POSITIVE_INFINITY},{Double.POSITIVE_INFINITY,1,0}}; // номер 129а из сборника задач Виктора Петровича Ильева
         int s = 0;
