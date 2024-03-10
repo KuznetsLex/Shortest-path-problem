@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -97,11 +96,13 @@ public class GraphInput {
         }
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("You should enter the square matrix");
+            assert scanner != null;
             scanner.close();
             return null;
         }
         catch (NumberFormatException e) {
             System.out.println("You entered the wrong type of data. You possible to enter the numbers or inf (for infinite)");
+            assert scanner != null;
             scanner.close();
             return null;
         }

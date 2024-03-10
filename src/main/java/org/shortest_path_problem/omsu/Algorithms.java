@@ -7,13 +7,14 @@ import java.util.HashSet;
 
 public class Algorithms {
     public static PointersAndDistances dijkstra(int s, double[][] graphWeightMatrix) {
+        class NegativeWeightException extends Exception{}
         try {
             int size = graphWeightMatrix[0].length;
 
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if(graphWeightMatrix[i][j]<0){
-                        throw new IllegalArgumentException();
+                        throw new NegativeWeightException();
                     }
                 }
             }
@@ -39,10 +40,7 @@ public class Algorithms {
                     }
                 }
                 for (int j = 0; j < size; j++) {
-                    if(usedPoints.contains(j)){
-                        continue;
-                    }
-                    else if (d[j] < min) {
+                    if (d[j] < min && !usedPoints.contains(j)) {
                         min = d[j];
                         u = j;
                     }
@@ -51,10 +49,7 @@ public class Algorithms {
                 usedPoints.add(u);
 
                 for (int v = 0; v < size; v++) {
-                    if(usedPoints.contains(v)){
-                        continue;
-                    }
-                    else if(d[u]+graphWeightMatrix[u][v]<d[v]){
+                    if(d[u]+graphWeightMatrix[u][v]<d[v] && !usedPoints.contains(v)){
                         d[v] = d[u]+graphWeightMatrix[u][v];
                         p[v] = u;
                     }
@@ -63,7 +58,7 @@ public class Algorithms {
 
             return new PointersAndDistances(p,d);
         }
-        catch (IllegalArgumentException e){
+        catch (NegativeWeightException e){
             System.out.println("You entered matrix with negative elements");
             return null;
         }
@@ -73,7 +68,6 @@ public class Algorithms {
         int n = graphWeightMatrix[0].length;
         int[] p = new int[n];
         double[] d = new double[n];
-        // очень важный код
         d[s] = 0;
         p[s] = s;
         for (int v = 0; v < n; v++) {
