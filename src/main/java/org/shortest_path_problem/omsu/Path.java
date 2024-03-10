@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.shortest_path_problem.omsu.Algorithms.bellmanFord;
 import static org.shortest_path_problem.omsu.Algorithms.dijkstra;
 
 public class Path {
-    public static PathAndDistance pathForDijkstra(int s, int t, double[][] graphWeightMatrix) {
+
+    public static PathAndDistance pathForBellmanFord(int s, int t, double[][] graphWeightMatrix) {
         List<Integer> pathList = new ArrayList<>(graphWeightMatrix[0].length);
-        PointersAndDistances pointersAndDistances = dijkstra(s, graphWeightMatrix);
+        PointersAndDistances pointersAndDistances = bellmanFord(s, graphWeightMatrix);
         int v = t;
         pathList.add(v);
         while(v!=s) {
@@ -24,5 +26,4 @@ public class Path {
         double distance = pointersAndDistances.getDistances()[t];
         return new PathAndDistance(pathList, distance);
     }
-
 }
