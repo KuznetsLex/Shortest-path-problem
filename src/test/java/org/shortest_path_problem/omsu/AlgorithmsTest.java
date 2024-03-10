@@ -1,6 +1,5 @@
 package org.shortest_path_problem.omsu;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
@@ -49,7 +48,7 @@ class AlgorithmsTest {
         int[] p = {0,2,0};
         double[] d = {0,3,2};
 
-        Assert.assertEquals(new PointersAndDistances(p,d),Algorithms.dijkstra(s,graph));
+        assertEquals(new PointersAndDistances(p,d),Algorithms.dijkstra(s,graph));
     }
 
     @Test
