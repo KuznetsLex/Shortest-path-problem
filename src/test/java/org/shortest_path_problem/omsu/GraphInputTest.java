@@ -1,6 +1,7 @@
 package org.shortest_path_problem.omsu;
 
 import org.junit.jupiter.api.Test;
+import org.shortest_path_problem.omsu.utilities.GraphInput;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 

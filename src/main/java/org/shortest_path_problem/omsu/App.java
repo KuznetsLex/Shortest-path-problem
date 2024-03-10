@@ -1,5 +1,7 @@
 package org.shortest_path_problem.omsu;
 
+import org.shortest_path_problem.omsu.utilities.GraphInput;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,7 +18,7 @@ public class App {
                 inputMode = sc.nextInt();
                 System.out.println();
                 if (inputMode == 1) {
-                    File file = new File("Input.txt");
+                    File file = new File("src/main/java/org/shortest_path_problem/omsu/utilities/Input.txt");
                     java.awt.Desktop.getDesktop().edit(file);
                 }
                 if (inputMode == 2) {
