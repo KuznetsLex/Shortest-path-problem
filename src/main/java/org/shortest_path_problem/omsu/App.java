@@ -12,8 +12,7 @@ import java.util.Scanner;
 import static java.lang.Math.max;
 
 // ВОПРОСЫ
-// 1) Как сохранить и закрыть приложение блокнот?
-// 2) Как заставлять пользователя делать инпут, пока ловится исключение?
+// 1) Как сохранить и закрыть приложение блокнот? Ответ: можно работать с shell'ом и командной строкой через Java
 // 3) Как сделать возврат в "главное меню"?
 // 4) output может быть не инициализирован
 
@@ -26,15 +25,19 @@ public class App {
         Scanner sc = new Scanner(System.in);
         double[][] graphWeightMatrix = new double[0][0];
         PathAndDistance output;
-        try {
-            while (!(inputMode == 1 || inputMode == 2)) {
-                System.out.print("How to input graph? (1 - manually, 2 - randomly): ");
-                inputMode = sc.nextInt();
+
+        boolean correctModeInput = false;
+        while (!(correctModeInput) || !(inputMode == 1 || inputMode == 2)) {
+            System.out.print("How to input graph? (1 - manually, 2 - randomly): ");
+            if (sc.hasNextInt()) {
+                inputMode = Integer.parseInt(sc.nextLine());
+                correctModeInput = true;
+            }
+            else {
+                sc.nextLine();
             }
         }
-        catch (InputMismatchException e) {
-            System.out.println("НЕ ЗНАЮ КАК ЗАЦИКЛИТЬ, TODO");
-        }
+
         File file = new File("src/main/java/org/shortest_path_problem/omsu/utilities/Input.txt");
         try {
             if (inputMode == 1) {
