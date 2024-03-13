@@ -59,7 +59,7 @@ public class Algorithms {
             return new PointersAndDistances(p,d);
         }
         catch (NegativeWeightException e){
-            System.out.println("You entered matrix with negative elements");
+            System.out.println("ERROR: Dijkstra algorithm only works with positive-weight graphs");
             return null;
         }
     }

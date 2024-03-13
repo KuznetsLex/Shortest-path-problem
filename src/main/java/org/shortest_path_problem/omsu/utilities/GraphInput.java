@@ -33,7 +33,7 @@ public class GraphInput {
                 }
                 writer.write('\n');
             }
-
+            writer.close();
             return graph;
         }
         catch (IOException e) {
