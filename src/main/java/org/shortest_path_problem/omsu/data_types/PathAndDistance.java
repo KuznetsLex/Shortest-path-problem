@@ -1,7 +1,6 @@
 package org.shortest_path_problem.omsu.data_types;
 
 import java.util.List;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class PathAndDistance {
