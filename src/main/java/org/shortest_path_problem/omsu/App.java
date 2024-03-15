@@ -61,6 +61,7 @@ public class App {
                         while (!(correctInput)) {
                             System.out.print("How many vertices are there in the graph? : ");
                             if (sc.hasNextInt()) {
+                                file.setWritable(true);
                                 graphWeightMatrix = GraphInput.randomInput(sc.nextInt());
                                 correctInput = true;
                                 file.setWritable(false);
