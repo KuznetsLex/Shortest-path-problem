@@ -208,7 +208,7 @@ class AlgorithmsTest {
             Algorithms.bellmanFord(0, graph);
         });
 
-        assertEquals("ERROR: BellmanFord algorithm only works graphs without negative weight cycles", exception.getMessage());
+        assertEquals("ERROR: BellmanFord algorithm only works with graphs without negative weight cycles", exception.getMessage());
     }
 
     @Test
@@ -222,7 +222,7 @@ class AlgorithmsTest {
             Algorithms.bellmanFord(0, graph);
         });
 
-        assertEquals("ERROR: BellmanFord algorithm only works graphs without negative weight cycles", exception.getMessage());
+        assertEquals("ERROR: BellmanFord algorithm only works with graphs without negative weight cycles", exception.getMessage());
     }
 
     @Test
