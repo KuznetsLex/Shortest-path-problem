@@ -5,6 +5,7 @@ import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AlgorithmsTest {
 
@@ -193,6 +194,35 @@ class AlgorithmsTest {
         double[] distances = {0, -2, 6, -1};
 
         assertEquals(new PointersAndDistances(pointers, distances), Algorithms.bellmanFord(0, graph));
+    }
+
+    @Test
+    void bellmanFordSeventh() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, -2, 7, -1},
+                {-5, Double.POSITIVE_INFINITY, 8, 6},
+                {-6, 3, Double.POSITIVE_INFINITY, -4},
+                {5, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY}
+        };
+        Exception exception = assertThrows(Exception.class, () -> {
+            Algorithms.bellmanFord(0, graph);
+        });
+
+        assertEquals("ERROR: BellmanFord algorithm only works graphs without negative weight cycles", exception.getMessage());
+    }
+
+    @Test
+    void bellmanFordEighth() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -62.5},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -45.3},
+                {19.4, 97.5, Double.POSITIVE_INFINITY}
+        };
+        Exception exception = assertThrows(Exception.class, () -> {
+            Algorithms.bellmanFord(0, graph);
+        });
+
+        assertEquals("ERROR: BellmanFord algorithm only works graphs without negative weight cycles", exception.getMessage());
     }
 
     @Test
