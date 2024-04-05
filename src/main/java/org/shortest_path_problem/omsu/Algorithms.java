@@ -65,6 +65,12 @@ public class Algorithms {
     }
 
     public static PointersAndDistances bellmanFord(int s, double[][] graphWeightMatrix) {
+        class NegativeCycleException extends RuntimeException {
+            public NegativeCycleException(String message){
+                super(message);
+            }
+        };
+
         int n = graphWeightMatrix[0].length;
         int[] p = new int[n];
         double[] d = new double[n];
@@ -86,6 +92,18 @@ public class Algorithms {
                 }
             }
         }
+
+        for (int v = 0; v < n; v++) {
+            for (int u = 0; u < n; u++) {
+                if (d[u] + graphWeightMatrix[u][v] < d[v]) {
+                    throw new NegativeCycleException("ERROR: BellmanFord algorithm only works with graphs without negative weight cycles");
+                }
+            }
+        }
+
+
+
+
         return new PointersAndDistances(p, d);
     }
 
