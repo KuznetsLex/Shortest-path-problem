@@ -5,6 +5,7 @@ import org.shortest_path_problem.omsu.data_types.PointersAndDistances;
 import org.shortest_path_problem.omsu.data_types.PointersAndDistancesMatrices;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AlgorithmsTest {
@@ -249,4 +250,89 @@ class AlgorithmsTest {
 
        assertEquals(new PointersAndDistancesMatrices(pointers, distances), Algorithms.floydWarshall(graph));
     }
+
+    @Test
+    void floydWarshallSecond() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, -1, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -1},
+                {-1, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY}
+        };
+        boolean negativeElement = false;
+        double[][] distancesArray =  Algorithms.floydWarshall(graph).getDistances();
+        for (int i = 0; i< distancesArray.length; i++) {
+            for (int j = 0; j < distancesArray.length; j++) {
+                if (i == j){
+                    if (distancesArray[i][j] < 0) {
+                        negativeElement = true;
+                        break;
+                }
+            }
+        }
+    }
+        assertTrue(negativeElement);
+    }
+
+    @Test
+    void floydWarshallThird() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, -1, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -1, 4},
+                {-1, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY}
+        };
+        boolean negativeElement = false;
+        double[][] distancesArray =  Algorithms.floydWarshall(graph).getDistances();
+        for (int i = 0; i< distancesArray.length; i++) {
+            for (int j = 0; j < distancesArray.length; j++) {
+                if (i == j){
+                    if (distancesArray[i][j] < 0) {
+                        negativeElement = true;
+                        break;
+                    }
+                }
+            }
+        }
+        assertTrue(negativeElement);
+    }
+    @Test
+    void floydWarshallFourth() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, 1, Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 1, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 1},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY}
+        };
+        boolean noPath = false;
+        double[][] distancesArray =  Algorithms.floydWarshall(graph).getDistances();
+        for (int i = 0; i< distancesArray.length; i++) {
+            for (int j = 0; j < distancesArray.length; j++) {
+                    if (distancesArray[i][j] == Double.POSITIVE_INFINITY) {
+                        noPath = true;
+                }
+            }
+        }
+        assertTrue(noPath);
+    }
+
+    @Test
+    void floydWarshallFifth() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, 1, Double.POSITIVE_INFINITY},
+                {1, Double.POSITIVE_INFINITY, 1},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY}
+                };
+        boolean noPath = false;
+        double[][] distancesArray =  Algorithms.floydWarshall(graph).getDistances();
+        for (int i = 0; i< distancesArray.length; i++) {
+            for (int j = 0; j < distancesArray.length; j++) {
+                if (distancesArray[i][j] == Double.POSITIVE_INFINITY) {
+                    noPath = true;
+                }
+            }
+        }
+        assertTrue(noPath);
+    }
+
 }
