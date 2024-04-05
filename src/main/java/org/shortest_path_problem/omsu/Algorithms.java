@@ -116,11 +116,9 @@ public class Algorithms {
                     matrixIndex[i][j] = i;
                 }
             }
-
             for (int i = 0; i < matrixWeight.length; i++){
                 matrixWeight[i][i] = 0;
             }
-
             for (int k = 0; k < matrixWeight.length; k++){
                 for (int i = 0; i < matrixWeight.length; i++){
                     for (int j = 0; j < matrixWeight.length; j++) {
@@ -129,7 +127,10 @@ public class Algorithms {
                             if(matrixIndex[k][j] == i) matrixIndex[i][j] = k;
                             else matrixIndex[i][j] = matrixIndex[k][j];
                         }
-                    }}}
+                    }
+                }
+            }
+
             return new PointersAndDistancesMatrices(matrixIndex, matrixWeight);
     }
 }
