@@ -15,6 +15,9 @@ java -jar Shortest_path_problem.jar
 ```
 4. Далее действуйте по инструкции консольного приложения.
 
+### Возможные проблемы и их решения
+1. Если введен новый граф, а в блокноте отображается старый - попробуйте перезапустить блокнот, либо воспользуйтесь редакторами с функцией auto-refresh
+   
 ## (En)
 Welcome to Shortest Path Finder!
 This console app allows you to find shortest path in graph. It uses Dijkstra, Bellman-Ford and Floyd-Warshell algorithms.
@@ -30,3 +33,6 @@ Download it .jar file. Attention: an Input.txt file will be created next to a .j
 java -jar Shortest_path_problem.jar
 ```
 4. Follow console app instructions.
+
+### Possible problems and their solutions
+1. If a new graph is entered, but the old one is still displayed in notepad, try to restart notepad, or use the editors with the auto-refresh support
