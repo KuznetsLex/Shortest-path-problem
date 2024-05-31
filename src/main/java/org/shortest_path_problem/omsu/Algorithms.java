@@ -96,7 +96,7 @@ public class Algorithms {
         for (int v = 0; v < n; v++) {
             for (int u = 0; u < n; u++) {
                 if (d[u] + graphWeightMatrix[u][v] < d[v]) {
-                    throw new NegativeCycleException("ERROR: BellmanFord algorithm only works with graphs without negative weight cycles");
+                    throw new NegativeCycleException("ERROR: Bellman-Ford algorithm found а negative weight cycle on a path");
                 }
             }
         }
@@ -130,7 +130,6 @@ public class Algorithms {
                     }
                 }
             }
-
             return new PointersAndDistancesMatrices(matrixIndex, matrixWeight);
     }
 }

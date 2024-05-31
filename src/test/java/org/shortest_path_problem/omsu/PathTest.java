@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PathTest {
 
@@ -201,5 +202,19 @@ class PathTest {
 
         List<Integer> path = new ArrayList<>(Arrays.asList(0, 1, 2));
         assertEquals(new PathAndDistance(path, 6), Path.pathForFloydWarshall(0, 2, graph));
+    }
+
+    @Test
+    void pathForFloydWarshallSixth() {
+        double[][] graph = {
+                {Double.POSITIVE_INFINITY, 5, Double.POSITIVE_INFINITY},
+                {Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -45.5},
+                {19.4, 97.5, Double.POSITIVE_INFINITY}
+        };
+        Exception exception = assertThrows(Exception.class, () -> {
+            Path.pathForFloydWarshall(0, 1, graph);
+        });
+
+        assertEquals("ERROR: Floyd-Warshall algorithm found а negative weight cycle on a path", exception.getMessage());
     }
 }
