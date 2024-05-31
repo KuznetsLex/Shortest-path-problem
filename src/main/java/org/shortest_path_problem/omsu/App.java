@@ -117,7 +117,7 @@ public class App {
                         System.out.println("Path: " + output.getPath().toString() + ", distance: " + output.getDistance());
                     }
                     catch (Exception e) {
-                        System.out.println("Error occurred. Try again, please");
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 2:
