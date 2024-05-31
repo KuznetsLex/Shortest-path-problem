@@ -37,7 +37,7 @@ public class GraphInput {
             return graph;
         }
         catch (IOException e) {
-            System.out.println("File doesn't exist");
+            System.out.println("ERROR: File doesn't exist");
             return new double[0][0];
         }
     }
@@ -91,23 +91,23 @@ public class GraphInput {
             return graph;
         }
         catch (FileNotFoundException e){
-            System.out.println("File doesn't exist");
+            System.out.println("ERROR: File doesn't exist");
             return null;
         }
         catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("You should enter the square matrix");
+            System.out.println("ERROR: You should enter the square matrix without line breaks at the end!");
             assert scanner != null;
             scanner.close();
             return null;
         }
         catch (NumberFormatException e) {
-            System.out.println("You entered the wrong type of data. You possible to enter the numbers or inf (for infinite)");
+            System.out.println("ERROR: You entered the wrong type of data. You possible to enter the numbers or inf (for infinite)");
             assert scanner != null;
             scanner.close();
             return null;
         }
         catch (NotZeroWeightsException e){
-            System.out.println("There should be only zero weights for edges that have the start and the end in one point");
+            System.out.println("ERROR: There should be only zero weights for edges that have the start and the end in one point");
             scanner.close();
             return null;
         }

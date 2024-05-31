@@ -23,13 +23,11 @@ public class Path {
         int v = t;
         pathList.add(v);
         while(v!=s) {
-//            assert pointersAndDistances != null;
             int u = pointersAndDistances.getPointers()[v];
             pathList.add(u);
             v = u;
         }
         Collections.reverse(pathList);
-//        assert pointersAndDistances != null;
         double distance = pointersAndDistances.getDistances()[t];
         return new PathAndDistance(pathList, distance);
     }
@@ -53,6 +51,12 @@ public class Path {
     }
 
     public static PathAndDistance pathForFloydWarshall(int s, int t, double[][] graphWeightMatrix) {
+        class NegativeCycleException extends RuntimeException {
+            public NegativeCycleException(String message){
+                super(message);
+            }
+        };
+
         if (!graphContains(graphWeightMatrix, max(s,t))) {
             throw new IllegalArgumentException();
         }
@@ -64,9 +68,7 @@ public class Path {
             t = matrices.getPointers()[s][t];
             path.add(t);
             if (matrices.getDistances()[t][t] < 0) {
-                path.clear();
-                path.add(s);
-                return new PathAndDistance(path, Double.NEGATIVE_INFINITY);
+                throw new NegativeCycleException("ERROR: Floyd-Warshall algorithm found а negative weight cycle on a path");
             }
         }
         Collections.reverse(path);

@@ -209,7 +209,7 @@ class AlgorithmsTest {
             Algorithms.bellmanFord(0, graph);
         });
 
-        assertEquals("ERROR: BellmanFord algorithm only works with graphs without negative weight cycles", exception.getMessage());
+        assertEquals("ERROR: Bellman-Ford algorithm found а negative weight cycle on a path", exception.getMessage());
     }
 
     @Test
@@ -223,7 +223,7 @@ class AlgorithmsTest {
             Algorithms.bellmanFord(0, graph);
         });
 
-        assertEquals("ERROR: BellmanFord algorithm only works with graphs without negative weight cycles", exception.getMessage());
+        assertEquals("ERROR: Bellman-Ford algorithm found а negative weight cycle on a path", exception.getMessage());
     }
 
     @Test
@@ -266,10 +266,10 @@ class AlgorithmsTest {
                     if (distancesArray[i][j] < 0) {
                         negativeElement = true;
                         break;
+                    }
                 }
             }
         }
-    }
         assertTrue(negativeElement);
     }
 
@@ -334,5 +334,4 @@ class AlgorithmsTest {
         }
         assertTrue(noPath);
     }
-
 }
