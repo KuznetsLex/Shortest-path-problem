@@ -4,7 +4,7 @@
 Это консольное приложение позволяет строить кратчайшие пути в графе, используя алгоритмы Дейкстры, Форда-Беллмана и Флойда-Уоршелла.
 
 ### Установка
-Загрузите папку с .jar файлом. Внимание: извлекать .jar файл из папки не рекомендуется, т.к. рядом с .jar файлом будет создаватся файл Input.txt для ввода графа.
+Загрузите Shortest_path_problem.jar файл. Внимание: рядом с .jar файлом будет создаватся файл Input.txt для ввода графа, поэтому имеет смысл поместить .jar в отдельную папку.
 
 ### Использование
 1. Откройте консоль (для Windows - cmd, для MacOS - Terminal)
@@ -20,7 +20,7 @@ Welcome to Shortest Path Finder!
 This console app allows you to find shortest path in graph. It uses Dijkstra, Bellman-Ford and Floyd-Warshell algorithms.
 
 ### Installation
-Download folder with .jar file. Attention: it is not recommended to separate the folder and the .jar file, because later Input.txt file will be generated next to .jar file.
+Download it .jar file. Attention: an Input.txt file will be created next to a .jar file, therefore it makes sense to place .jar to a separate folder.
 
 ### Usage
 1. Open console (for Windows - cmd, for MacOS - Terminal)
