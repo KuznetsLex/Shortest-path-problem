@@ -6,7 +6,7 @@ stages:
 test-job:
   stage: test
   script: 
-    - docker run --rm shortest-path mvn test
+    - mvn test
   artifacts:
     when: always
     reports:
