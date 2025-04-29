@@ -3,11 +3,6 @@ stages:
   - build
   - deploy
 
-build-job:    
-  stage: build
-  script:
-    - docker build -t shortest-path .
-
 test-job:
   stage: test
   script: 
@@ -18,6 +13,11 @@ test-job:
       junit: target/surefire-reports/TEST-*.xml
     paths:
       - target/surefire-reports/
+
+build-job:    
+  stage: build
+  script:
+    - docker build -t shortest-path .
       
 deploy-job:    
   stage: deploy
