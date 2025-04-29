@@ -3,6 +3,11 @@ stages:
   - test
   - deploy
 
+build-job:    
+  stage: build
+  script:
+    - docker compose build
+
 test-job:
   stage: test
   image: maven:amazoncorretto
@@ -14,11 +19,6 @@ test-job:
       junit: target/surefire-reports/TEST-*.xml
     paths:
       - target/surefire-reports/
-
-build-job:    
-  stage: build
-  script:
-    - docker build -t shortest-path .
       
 deploy-job:    
   stage: deploy
